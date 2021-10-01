@@ -49,13 +49,17 @@ DISTRIBUTOR_KEY="${CUSTOM_DISTRIBUTOR_KEY:-"$DEFAULT_DISTRIBUTOR_KEY"}"
 
 DISTRIBUTOR_PASSWORD="${7:-tizenpkcs12passfordsigner}"
 
-echo PROJECT_DIR: "$PROJECT_DIR"
-echo AUTHOR_CERT: "$AUTHOR_CERT"
-echo AUTHOR_KEY: "$AUTHOR_KEY"
-echo AUTHOR_PASSWORD: '***'
-echo DISTRIBUTOR_CERT: "$DISTRIBUTOR_CERT"
-echo DISTRIBUTOR_KEY: "$DISTRIBUTOR_KEY"
-echo DISTRIBUTOR_PASSWORD: '***'
+echo <<EOF
+Build and signing parameters:
+ - project-dir: $PROJECT_DIR
+ - author-cert: $AUTHOR_CERT
+ - author-key: $AUTHOR_KEY
+ - author-password: ***
+ - distributor-cert: $DISTRIBUTOR_CERT
+ - distributor-key: $DISTRIBUTOR_KEY
+ - distributor-password: ***
+ - privilege: $PRIVILEGE
+EOF
 
 #
 # Create profiles.xml
