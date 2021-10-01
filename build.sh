@@ -2,10 +2,11 @@
 # Set up Tizen Studio
 #
 TIZEN_STUDIO="$GITHUB_WORKSPACE/tizen-studio"
+INSTALLER="$GITHUB_WORKSPACE/tizen-studio_4.1.1.bin"
 
-wget -nc -O "$GITHUB_WORKSPACE/tizen-studio_4.1.1.bin"  http://download.tizen.org/sdk/Installer/tizen-studio_4.1.1/web-cli_Tizen_Studio_4.1.1_ubuntu-64.bin
-chmod a+x "$GITHUB_WORKSPACE/tizen-studio_4.1.1.bin"
-"$GITHUB_WORKSPACE/tizen-studio_4.1.1.bin" --accept-license $TIZEN_STUDIO
+wget -nc -O "$INSTALLER"  http://download.tizen.org/sdk/Installer/tizen-studio_4.1.1/web-cli_Tizen_Studio_4.1.1_ubuntu-64.bin
+chmod a+x "$INSTALLER"
+"$INSTALLER" --accept-license $TIZEN_STUDIO
 
 PATH="$TIZEN_STUDIO/tools/ide/bin:$PATH"
 
