@@ -1,5 +1,9 @@
-name: 'tizen-build-action'
+name: 'Sourcetoad - Tizen Build'
 description: 'Build and package a Tizen app'
+author: Sourcetoad
+branding:
+  color: 'blue'
+  icon: 'package'
 inputs:
   project-dir:
     description: 'Absolute path to your Tizen project.'
