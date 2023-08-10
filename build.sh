@@ -88,7 +88,7 @@ tizen build-web -- "$PROJECT_DIR" \
 
 if [ $? -eq 0 ]; then
     SUCCESS=true
-    echo "::set-output name=package-artifact::$PACKAGE_OUTPUT_PATH"
+    echo "package-artifact=$PACKAGE_OUTPUT_PATH" >> $GITHUB_OUTPUT
 else
     SUCCESS=false
     cat "$ERROR_LOG"
