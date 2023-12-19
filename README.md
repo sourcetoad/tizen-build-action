@@ -25,6 +25,9 @@ You can encode your certificates and keys in base64 via:
 
 Then you can store them in GitHub Secrets to securely pass to the action.
 
+> [!TIP]
+> We've discovered a hidden requirement on generated passwords which isn't consistent. We've found luck with a password strictly 27 alpha characters long. If you're having trouble, try that.
+
 ### Outputs
 | Name               | Description                       |
 |--------------------|-----------------------------------|
