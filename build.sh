@@ -13,7 +13,7 @@ PATH="$TIZEN_STUDIO/tools/ide/bin:$PATH"
 #
 # Parse arguments
 #
-if [$8 -eq 'partner']; then
+if [ "$8" = "partner" ]; then
     PRIVILEGE=parner
 else
     PRIVILEGE=public
