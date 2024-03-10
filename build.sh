@@ -33,7 +33,7 @@ echo -n "$3" | base64 -d >"$AUTHOR_KEY"
 
 AUTHOR_PW="$GITHUB_WORKSPACE/author-pw.pwd"
 echo -n "$4" | base64 -d >"$AUTHOR_PW"
-
+chmod 0777 $AUTHOR_KEY $AUTHOR_PW
 if [ ! -z $5 ]; then
     CUSTOM_DISTRIBUTOR_CERT="$GITHUB_WORKSPACE/distributor-cert.cer"
     echo -n "$5" | base64 -d >"$CUSTOM_DISTRIBUTOR_CERT"
