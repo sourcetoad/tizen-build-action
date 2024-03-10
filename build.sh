@@ -76,6 +76,8 @@ cat <<EOF >"$GLOBAL_PROFILES_PATH"
     </profile>
 </profiles>
 EOF
+
+cat $GLOBAL_PROFILES_PATH
 chmod a-w "$GLOBAL_PROFILES_PATH"
 
 #
