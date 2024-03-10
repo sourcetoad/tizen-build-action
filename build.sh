@@ -31,7 +31,8 @@ AUTHOR_CERT="${CUSTOM_AUTHOR_CERT:-"$DEFAULT_AUTHOR_CERT"}"
 AUTHOR_KEY="$GITHUB_WORKSPACE/author-key.p12"
 echo -n "$3" | base64 -d >"$AUTHOR_KEY"
 
-AUTHOR_PASSWORD="$4"
+AUTHOR_KEY_PW="$GITHUB_WORKSPACE/author-key-pw.pwd"
+echo -n "$4" | base64 -d >"$AUTHOR_KEY_PW"
 
 if [ ! -z $5 ]; then
     CUSTOM_DISTRIBUTOR_CERT="$GITHUB_WORKSPACE/distributor-cert.cer"
@@ -69,7 +70,7 @@ cat <<EOF >"$GLOBAL_PROFILES_PATH"
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <profiles active="sourcetoad-tizen-public" version="3.1">
     <profile name="sourcetoad-tizen-public">
-        <profileitem ca="$AUTHOR_CERT" distributor="0" key="$AUTHOR_KEY" password="$AUTHOR_PASSWORD" rootca=""/>
+        <profileitem ca="$AUTHOR_CERT" distributor="0" key="$AUTHOR_KEY" password="$AUTHOR_KEY_PW" rootca=""/>
         <profileitem ca="$DISTRIBUTOR_CERT" distributor="1" key="$DISTRIBUTOR_KEY" password="$DISTRIBUTOR_PASSWORD" rootca=""/>
         <profileitem ca="" distributor="2" key="" password="" rootca=""/>
     </profile>
@@ -84,7 +85,7 @@ PACKAGE_OUTPUT_PATH="$PROJECT_DIR/output.wgt"
 ERROR_LOG="$GITHUB_WORKSPACE/tizen-studio-data/cli/logs/cli.log"
 
 tizen build-web -- "$PROJECT_DIR" \
-    && tizen package -t wgt -s sourcetoad-tizen-public -o "$PACKAGE_OUTPUT_PATH"
+    && tizen package -t wgt -s sourcetoad-tizen-public -o "$PACKAGE_OUTPUT_PATH" -- "$PROJECT_DIR/.buildResult"
 
 if [ $? -eq 0 ]; then
     SUCCESS=true
