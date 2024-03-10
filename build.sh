@@ -31,8 +31,8 @@ AUTHOR_CERT="${CUSTOM_AUTHOR_CERT:-"$DEFAULT_AUTHOR_CERT"}"
 AUTHOR_KEY="$GITHUB_WORKSPACE/author-key.p12"
 echo -n "$3" | base64 -d >"$AUTHOR_KEY"
 
-#AUTHOR_KEY_PW="$GITHUB_WORKSPACE/author-key-pw.pwd"
-#echo -n "$4" | base64 -d >"$AUTHOR_KEY_PW"
+AUTHOR_PW="$GITHUB_WORKSPACE/author-pw.pwd"
+echo -n "$4" | base64 -d >"$AUTHOR_PW"
 
 if [ ! -z $5 ]; then
     CUSTOM_DISTRIBUTOR_CERT="$GITHUB_WORKSPACE/distributor-cert.cer"
@@ -70,7 +70,7 @@ cat <<EOF >"$GLOBAL_PROFILES_PATH"
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <profiles active="sourcetoad-tizen-public" version="3.1">
     <profile name="sourcetoad-tizen-public">
-        <profileitem ca="$AUTHOR_CERT" distributor="0" key="$AUTHOR_KEY" password="$AUTHOR_KEY_PW" rootca=""/>
+        <profileitem ca="$AUTHOR_CERT" distributor="0" key="$AUTHOR_KEY" password="$AUTHOR_PW" rootca=""/>
         <profileitem ca="$DISTRIBUTOR_CERT" distributor="1" key="$DISTRIBUTOR_KEY" password="$DISTRIBUTOR_PASSWORD" rootca=""/>
         <profileitem ca="" distributor="2" key="" password="" rootca=""/>
     </profile>
