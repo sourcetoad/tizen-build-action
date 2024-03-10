@@ -31,8 +31,8 @@ AUTHOR_CERT="${CUSTOM_AUTHOR_CERT:-"$DEFAULT_AUTHOR_CERT"}"
 AUTHOR_KEY="$GITHUB_WORKSPACE/author-key.p12"
 echo -n "$3" | base64 -d >"$AUTHOR_KEY"
 
-AUTHOR_KEY_PW="$GITHUB_WORKSPACE/author-key-pw.pwd"
-echo -n "$4" | base64 -d >"$AUTHOR_KEY_PW"
+#AUTHOR_KEY_PW="$GITHUB_WORKSPACE/author-key-pw.pwd"
+#echo -n "$4" | base64 -d >"$AUTHOR_KEY_PW"
 
 if [ ! -z $5 ]; then
     CUSTOM_DISTRIBUTOR_CERT="$GITHUB_WORKSPACE/distributor-cert.cer"
