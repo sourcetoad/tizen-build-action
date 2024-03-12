@@ -33,9 +33,9 @@ echo -n "$3" | base64 -d >"$AUTHOR_KEY"
 
 AUTHOR_PASSWORD="$4"
 
-tizen security-profiles add -a $AUTHOR_KEY -n sourcetoad-tizen-public -p $AUTHOR_PASSWORD
-tizen cli-config -g "profiles.path=/home/runner/work/tizen_novel/tizen_novel/tizen-studio-data/profile/profiles.xml"
-tizen cli-config "profiles.path=/home/runner/work/tizen_novel/tizen_novel/tizen-studio-data/profile/profiles.xml"
+tizen security-profiles add -a $AUTHOR_KEY -n sourcetoad-tizen-public -p $AUTHOR_PASSWORD -- "$PROJECT_DIR/.metadata/.plugins/org.tizen.common.sign/profiles.xml"
+#tizen cli-config -g "profiles.path=/home/runner/work/tizen_novel/tizen_novel/tizen-studio-data/profile/profiles.xml"
+#tizen cli-config "profiles.path=/home/runner/work/tizen_novel/tizen_novel/tizen-studio-data/profile/profiles.xml"
 if [ ! -z $5 ]; then
     CUSTOM_DISTRIBUTOR_CERT="$GITHUB_WORKSPACE/distributor-cert.cer"
     echo -n "$5" | base64 -d >"$CUSTOM_DISTRIBUTOR_CERT"
