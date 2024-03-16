@@ -11,13 +11,9 @@ Following inputs can be used as `step.with` keys
 | Name                   | Required | Default                     | Type   | Description                                                                 |
 |------------------------|----------|-----------------------------|--------|-----------------------------------------------------------------------------|
 | `project-dir`          | Yes      |                             | String | Absolute path to your Tizen project.                                        |
-| `author-cert`          | No       | Tizen developer cert        | String | Author certificate for signing. Base64-encoded.                             |
 | `author-key`           | Yes      |                             | String | Author key used for signing. Base64-encoded.                                |
 | `author-password`      | Yes      |                             | String | Password for `author-key`                                                   |
-| `distributor-cert`     | No       | Tizen distributor cert      | String | Distributor certificate used for signing. Base64-encoded.                   |
-| `distributor-key`      | No       | Tizen distributor key       | String | Distributor key used for signing. Base64-encoded.                           |
-| `distributor-password` | No       | Default for distributor key | String | Password for `distributor-key`                                              |
-| `privilege`            | No       | `public`                    | String | `public` or `partner`&mdash;Which distributor cert/key is used if not provided. |
+| `distributor-cert`     | Yes      | Tizen distributor cert      | String | Distributor certificate used for signing. Base64-encoded.                   |
 
 You can encode your certificates and keys in base64 via:
 
@@ -74,3 +70,5 @@ This way, changes to the action and its usage can happen simultaneously, in a si
    Be careful: simply cloning in place will likely install it as a submodule&mdash;make sure to copy the files without `.git` unless you know what you're doing.
 2. In your other project's workflow, in the action step, set\
    `uses: ./.github/actions/tizen-build-action`
+
+
