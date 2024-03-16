@@ -41,6 +41,9 @@ tizen security-profiles add -a $AUTHOR_KEY -n sourcetoad-tizen-public -p $AUTHOR
 
 tizen security-profiles add -a $AUTHOR_KEY -n sourcetoad-tizen-public -p $AUTHOR_PASSWORD -d $DISTRIBUTOR_KEY-- "$PROJECT_DIR/.metadata/.plugins/org.tizen.common.sign/profiles.xml"
 
+
+tizen security-profiles add -a $AUTHOR_KEY -n sourcetoad-tizen-public -p $AUTHOR_PASSWORD -d $DISTRIBUTOR_KEY-- "$PROJECT_DIR/.metadata/.plugins/org.tizen.common.sign/profiles.xml"
+
 echo <<EOF
 Build and signing parameters:
  - project-dir: $PROJECT_DIR
