@@ -33,7 +33,6 @@ echo -n "$3" | base64 -d >"$AUTHOR_KEY"
 
 AUTHOR_PASSWORD="$4"
 
-tizen security-profiles add -a $AUTHOR_KEY -n sourcetoad-tizen-public -p $AUTHOR_PASSWORD -- "$PROJECT_DIR/.metadata/.plugins/org.tizen.common.sign/profiles.xml"
 #tizen cli-config -g "profiles.path=/home/runner/work/tizen_novel/tizen_novel/tizen-studio-data/profile/profiles.xml"
 #tizen cli-config "profiles.path=/home/runner/work/tizen_novel/tizen_novel/tizen-studio-data/profile/profiles.xml"
 if [ ! -z $5 ]; then
@@ -51,6 +50,9 @@ DEFAULT_DISTRIBUTOR_KEY="$TIZEN_STUDIO/tools/certificate-generator/certificates/
 DISTRIBUTOR_KEY="${CUSTOM_DISTRIBUTOR_KEY:-"$DEFAULT_DISTRIBUTOR_KEY"}"
 
 DISTRIBUTOR_PASSWORD="${7:-tizenpkcs12passfordsigner}"
+
+
+tizen security-profiles add -a $AUTHOR_KEY -n sourcetoad-tizen-public -p $AUTHOR_PASSWORD -d $DISTRIBUTOR_KEY-- "$PROJECT_DIR/.metadata/.plugins/org.tizen.common.sign/profiles.xml"
 
 echo <<EOF
 Build and signing parameters:
