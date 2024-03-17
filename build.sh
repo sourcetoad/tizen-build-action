@@ -35,7 +35,7 @@ fi
 DEFAULT_DISTRIBUTOR_CERT="$TIZEN_STUDIO/tools/certificate-generator/certificates/distributor/sdk-$PRIVILEGE/tizen-distributor-ca.cer"
 DISTRIBUTOR_CERT="${CUSTOM_DISTRIBUTOR_CERT:-"$DEFAULT_DISTRIBUTOR_CERT"}"
 
-tizen security-profiles add -a $AUTHOR_KEY -n sourcetoad-tizen-public -p $AUTHOR_PASSWORD -d $DISTRIBUTOR_KEY-- "$PROJECT_DIR/.metadata/.plugins/org.tizen.common.sign/profiles.xml"
+tizen security-profiles add -a $AUTHOR_KEY -n sourcetoad-tizen-public -p $AUTHOR_PASSWORD -d $DISTRIBUTOR_KEY -- "$PROJECT_DIR/.metadata/.plugins/org.tizen.common.sign/profiles.xml"
 
 echo <<EOF
 Build and signing parameters:
