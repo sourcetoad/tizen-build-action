@@ -28,14 +28,14 @@ AUTHOR_PASSWORD="$3"
 
 #tizen cli-config -g "profiles.path=/home/runner/work/tizen_novel/tizen_novel/tizen-studio-data/profile/profiles.xml"
 #tizen cli-config "profiles.path=/home/runner/work/tizen_novel/tizen_novel/tizen-studio-data/profile/profiles.xml"
-if [ ! -z $5 ]; then
+if [ ! -z $4 ]; then
     CUSTOM_DISTRIBUTOR_CERT="$GITHUB_WORKSPACE/distributor-cert.cer"
-    echo -n "$5" | base64 -d >"$CUSTOM_DISTRIBUTOR_CERT"
+    echo -n "$4" | base64 -d >"$CUSTOM_DISTRIBUTOR_CERT"
 fi
-DEFAULT_DISTRIBUTOR_CERT="$TIZEN_STUDIO/tools/certificate-generator/certificates/distributor/sdk-$PRIVILEGE/tizen-distributor-ca.cer"
-DISTRIBUTOR_CERT="${CUSTOM_DISTRIBUTOR_CERT:-"$DEFAULT_DISTRIBUTOR_CERT"}"
 
-tizen security-profiles add -a $AUTHOR_KEY -n sourcetoad-tizen-public -p $AUTHOR_PASSWORD -d $DISTRIBUTOR_KEY -- "$PROJECT_DIR/.metadata/.plugins/org.tizen.common.sign/profiles.xml"
+
+tizen security-profiles remove -- "$PROJECT_DIR/.metadata/.plugins/org.tizen.common.sign/profiles.xml"
+tizen security-profiles add -a $AUTHOR_KEY -n sourcetoad-tizen-public -p $AUTHOR_PASSWORD -d $CUSTOM_DISTRIBUTOR_CERT -- "$PROJECT_DIR/.metadata/.plugins/org.tizen.common.sign/profiles.xml"
 
 echo <<EOF
 Build and signing parameters:
