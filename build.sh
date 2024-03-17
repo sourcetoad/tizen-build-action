@@ -32,7 +32,10 @@ if [ ! -z $4 ]; then
     CUSTOM_DISTRIBUTOR_CERT="$GITHUB_WORKSPACE/distributor-cert.p12"
     echo -n "$4" | base64 -d >"$CUSTOM_DISTRIBUTOR_CERT"
 fi
-tizen security-profiles add -a $AUTHOR_KEY -n sourcetoad-tizen-public -p $AUTHOR_PASSWORD -d $CUSTOM_DISTRIBUTOR_CERT -A -dp $AUTHOR_PASSWORD
+
+DISTRIBUTOR_PASSWORD="$5"
+
+tizen security-profiles add -a $AUTHOR_KEY -n sourcetoad-tizen-public -p $AUTHOR_PASSWORD -d $CUSTOM_DISTRIBUTOR_CERT -A -dp $DISTRIBUTOR_PASSWORD
 echo <<EOF
 Build and signing parameters:
  - project-dir: $PROJECT_DIR

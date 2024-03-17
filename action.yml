@@ -17,6 +17,9 @@ inputs:
   distributor-cert:
     description: 'Distributor certificate used for signing. Base64-encoded.'
     required: true
+  distributor-password:
+    description: 'Password for author-key.'
+    required: true
 outputs:
   package-artifact:
     description: 'The absolute path to the build artifact.'
@@ -31,4 +34,5 @@ runs:
           "${{ inputs.project-dir }}" \
           "${{ inputs.author-key }}" \
           "${{ inputs.author-password }}" \
-          "${{ inputs.distributor-cert }}" 
+          "${{ inputs.distributor-cert }}" \
+          "${{ inputs.distributor-password }}" 
