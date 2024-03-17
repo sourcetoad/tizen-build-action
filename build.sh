@@ -29,7 +29,7 @@ AUTHOR_PASSWORD="$3"
 #tizen cli-config -g "profiles.path=/home/runner/work/tizen_novel/tizen_novel/tizen-studio-data/profile/profiles.xml"
 #tizen cli-config "profiles.path=/home/runner/work/tizen_novel/tizen_novel/tizen-studio-data/profile/profiles.xml"
 if [ ! -z $4 ]; then
-    CUSTOM_DISTRIBUTOR_CERT="$GITHUB_WORKSPACE/distributor-cert.cer"
+    CUSTOM_DISTRIBUTOR_CERT="$GITHUB_WORKSPACE/distributor-cert.p12"
     echo -n "$4" | base64 -d >"$CUSTOM_DISTRIBUTOR_CERT"
 fi
 tizen security-profiles add -a $AUTHOR_KEY -n sourcetoad-tizen-public -p $AUTHOR_PASSWORD -d $CUSTOM_DISTRIBUTOR_CERT -A
