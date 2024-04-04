@@ -28,14 +28,13 @@ AUTHOR_PASSWORD="$3"
 
 #tizen cli-config -g "profiles.path=/home/runner/work/tizen_novel/tizen_novel/tizen-studio-data/profile/profiles.xml"
 #tizen cli-config "profiles.path=/home/runner/work/tizen_novel/tizen_novel/tizen-studio-data/profile/profiles.xml"
-if [ ! -z $4 ]; then
-    CUSTOM_DISTRIBUTOR_CERT="$GITHUB_WORKSPACE/distributor-cert.p12"
-    echo -n "$4" | base64 -d >"$CUSTOM_DISTRIBUTOR_CERT"
-fi
+CUSTOM_DISTRIBUTOR_CERT="$GITHUB_WORKSPACE/distributor-cert.p12"
+echo -n "$4" | base64 -d >"$CUSTOM_DISTRIBUTOR_CERT"
+
 
 DISTRIBUTOR_PASSWORD="$5"
 
-tizen security-profiles add -a $AUTHOR_KEY -n sourcetoad-tizen-public -p $AUTHOR_PASSWORD -d $CUSTOM_DISTRIBUTOR_CERT -A -dp $DISTRIBUTOR_PASSWORD
+tizen security-profiles add -a $AUTHOR_KEY -n sourcetoad-tizen-public -p $AUTHOR_PASSWORD -d $CUSTOM_DISTRIBUTOR_CERT -dp $DISTRIBUTOR_PASSWORD
 echo <<EOF
 Build and signing parameters:
  - project-dir: $PROJECT_DIR
@@ -59,9 +58,8 @@ ERROR_LOG="$GITHUB_WORKSPACE/tizen-studio-data/cli/logs/cli.log"
 rm -rf $PROJECT_DIR/.git
 rm -rf $PROJECT_DIR/.github
 cd $PROJECT_DIR
-tizen cli-config "profiles.path=/home/runner/work/tizen_novel/tizen_novel/tizen-studio-data/profile/profiles.xml"
-tizen build-web -e .git/ -e .github -- "$PROJECT_DIR" \
-    && tizen package -t wgt -s sourcetoad-tizen-public -o "$PACKAGE_OUTPUT_PATH" -- "$PROJECT_DIR"
+tizen build-web -e .git/* -e .github -e .git -e .github/* -- "$PROJECT_DIR" 
+tizen package -t wgt -s sourcetoad-tizen-public -o "$PACKAGE_OUTPUT_PATH" -- "$PROJECT_DIR"
 
 if [ $? -eq 0 ]; then
     SUCCESS=true
