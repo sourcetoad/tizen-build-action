@@ -1,0 +1,16 @@
+name: tizen-build-action lint
+on:
+  push:
+  pull_request:
+
+jobs:
+  bash-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Lint Bash
+        uses: azohra/shell-linter@latest
+        with:
+          path: '*.sh'
