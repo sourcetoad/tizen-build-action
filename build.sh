@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # Set up Tizen Studio
 #
