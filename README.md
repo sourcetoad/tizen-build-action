@@ -1,22 +1,23 @@
 # Tizen Build GitHub Action
 Build and package a Tizen app.
 
-It currently only works for Web applications (.wgt). If you want native app support, please upstream a fix :)
+> [!IMPORTANT]
+> It currently only works for Web applications (.wgt). If you want native app support, please upstream a fix :)
 
 ## Usage
 ### Inputs
 
 Following inputs can be used as `step.with` keys
 
-| Name                   | Required | Default                     | Type   | Description                                                                 |
-|------------------------|----------|-----------------------------|--------|-----------------------------------------------------------------------------|
-| `project-dir`          | Yes      |                             | String | Absolute path to your Tizen project.                                        |
-| `author-cert`          | No       | Tizen developer cert        | String | Author certificate for signing. Base64-encoded.                             |
-| `author-key`           | Yes      |                             | String | Author key used for signing. Base64-encoded.                                |
-| `author-password`      | Yes      |                             | String | Password for `author-key`                                                   |
-| `distributor-cert`     | No       | Tizen distributor cert      | String | Distributor certificate used for signing. Base64-encoded.                   |
-| `distributor-key`      | No       | Tizen distributor key       | String | Distributor key used for signing. Base64-encoded.                           |
-| `distributor-password` | No       | Default for distributor key | String | Password for `distributor-key`                                              |
+| Name                   | Required | Default                     | Type   | Description                                                                     |
+|------------------------|----------|-----------------------------|--------|---------------------------------------------------------------------------------|
+| `project-dir`          | Yes      |                             | String | Absolute path to your Tizen project.                                            |
+| `author-cert`          | No       | Tizen developer cert        | String | Author certificate for signing. Base64-encoded.                                 |
+| `author-key`           | Yes      |                             | String | Author key used for signing. Base64-encoded.                                    |
+| `author-password`      | Yes      |                             | String | Password for `author-key`                                                       |
+| `distributor-cert`     | No       | Tizen distributor cert      | String | Distributor certificate used for signing. Base64-encoded.                       |
+| `distributor-key`      | No       | Tizen distributor key       | String | Distributor key used for signing. Base64-encoded.                               |
+| `distributor-password` | No       | Default for distributor key | String | Password for `distributor-key`                                                  |
 | `privilege`            | No       | `public`                    | String | `public` or `partner`&mdash;Which distributor cert/key is used if not provided. |
 
 You can encode your certificates and keys in base64 via:
@@ -58,7 +59,7 @@ To do so, invoke the cache action **before** the build.
 The important part is the `path`.
 ```yaml
 - name: Cache Tizen Studio installer
-  uses: actions/cache@v2
+  uses: actions/cache@v4
   with:
     path: ${{ github.workspace }}/tizen-studio_*.bin
     key: tizen-studio-installer
