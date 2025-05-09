@@ -1,3 +1,7 @@
+# v1.1.2 (May 9, 2025)
+ * Add linter for bash files. ([#20](https://github.com/sourcetoad/tizen-build-action/pull/20)
+ * Adjust readme for `cache/v4` ([#21](https://github.com/sourcetoad/tizen-build-action/pull/21)
+
 # v1.1.1 (January 5, 2024)
  * Fix invalid string comparison. ([#11](https://github.com/sourcetoad/tizen-build-action/pull/11))
  * Add note on odd password requirement in Tizen. ([#12](https://github.com/sourcetoad/tizen-build-action/pull/12))
