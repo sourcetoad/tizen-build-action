@@ -1,3 +1,6 @@
+# v1.2.0 (August 4, 2026)
+ * Add optional `package-name` input to customize generated `.wgt` filename. ([#28](https://github.com/sourcetoad/tizen-build-action/pull/28))
+
 # v1.1.2 (May 9, 2025)
  * Add linter for bash files. ([#20](https://github.com/sourcetoad/tizen-build-action/pull/20)
  * Adjust readme for `cache/v4` ([#21](https://github.com/sourcetoad/tizen-build-action/pull/21)

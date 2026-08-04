@@ -19,6 +19,7 @@ Following inputs can be used as `step.with` keys
 | `distributor-key`      | No       | Tizen distributor key       | String | Distributor key used for signing. Base64-encoded.                               |
 | `distributor-password` | No       | Default for distributor key | String | Password for `distributor-key`                                                  |
 | `privilege`            | No       | `public`                    | String | `public` or `partner`&mdash;Which distributor cert/key is used if not provided. |
+| `package-name`         | No       | `output.wgt`                | String | Output package filename. `.wgt` is appended if omitted.                         |
 
 You can encode your certificates and keys in base64 via:
 
@@ -44,6 +45,7 @@ Then you can store them in GitHub Secrets to securely pass to the action.
     project-dir: ${{ github.workspace }}/TizenApp
     author-key: ${{ secrets.TIZEN_AUTHOR_KEY }}
     author-password: ${{ secrets.TIZEN_AUTHOR_KEY_PW }}
+    package-name: app-${{ github.sha }}
 
 - name: Upload Tizen package artifact
   uses: actions/upload-artifact@v2
