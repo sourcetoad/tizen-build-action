@@ -30,6 +30,10 @@ inputs:
     description: 'public or partner - Which distributor cert/key is used if not provided.'
     required: false
     default: 'public'
+  package-name:
+    description: 'Optional output package filename. ".wgt" is appended if omitted.'
+    required: false
+    default: 'output.wgt'
 outputs:
   package-artifact:
     description: 'The absolute path to the build artifact.'
@@ -48,4 +52,5 @@ runs:
           "${{ inputs.distributor-cert }}" \
           "${{ inputs.distributor-key }}" \
           "${{ inputs.distributor-password }}" \
-          "${{ inputs.privilege }}"
+          "${{ inputs.privilege }}" \
+          "${{ inputs.package-name }}"
