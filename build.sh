@@ -20,6 +20,12 @@ else
     PRIVILEGE=public
 fi
 
+PACKAGE_NAME="${9:-output.wgt}"
+PACKAGE_NAME="${PACKAGE_NAME##*/}"
+if [[ "$PACKAGE_NAME" != *.wgt ]]; then
+    PACKAGE_NAME="$PACKAGE_NAME.wgt"
+fi
+
 PROJECT_DIR="$1"
 
 if [ -n "$2" ]; then
@@ -60,6 +66,7 @@ Build and signing parameters:
  - distributor-key: $DISTRIBUTOR_KEY
  - distributor-password: ***
  - privilege: $PRIVILEGE
+ - package-name: $PACKAGE_NAME
 EOF
 
 #
@@ -81,7 +88,7 @@ chmod a-w "$GLOBAL_PROFILES_PATH"
 #
 # Build and sign
 #
-PACKAGE_OUTPUT_PATH="$PROJECT_DIR/output.wgt"
+PACKAGE_OUTPUT_PATH="$PROJECT_DIR/$PACKAGE_NAME"
 ERROR_LOG="$GITHUB_WORKSPACE/tizen-studio-data/cli/logs/cli.log"
 
 tizen build-web -- "$PROJECT_DIR" \
