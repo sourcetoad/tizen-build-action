@@ -15,7 +15,7 @@ PATH="$TIZEN_STUDIO/tools/ide/bin:$PATH"
 # Parse arguments
 #
 if [ "$8" = "partner" ]; then
-    PRIVILEGE=parner
+    PRIVILEGE=partner
 else
     PRIVILEGE=public
 fi
@@ -77,6 +77,8 @@ cat <<EOF >"$GLOBAL_PROFILES_PATH"
 </profiles>
 EOF
 chmod a-w "$GLOBAL_PROFILES_PATH"
+
+PACKAGE_NAME="$9"
 
 #
 # Build and sign
