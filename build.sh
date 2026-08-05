@@ -91,6 +91,13 @@ tizen build-web -- "$PROJECT_DIR" \
 # shellcheck disable=SC2181
 if [ $? -eq 0 ]; then
     SUCCESS=true
+    BUILT_WGT="$(find "$PROJECT_DIR/.buildResult" -maxdepth 1 -name '*.wgt' | head -1)"
+    if [ -n "$PACKAGE_NAME" ]; then
+        PACKAGE_OUTPUT_PATH="$(dirname "$BUILT_WGT")/${PACKAGE_NAME}.wgt"
+        mv "$BUILT_WGT" "$PACKAGE_OUTPUT_PATH"
+    else
+        PACKAGE_OUTPUT_PATH="$BUILT_WGT"
+    fi
     echo "package-artifact=$PACKAGE_OUTPUT_PATH" >> "$GITHUB_OUTPUT"
 else
     SUCCESS=false
