@@ -93,13 +93,17 @@ tizen build-web -- "$PROJECT_DIR" \
 if [ $? -eq 0 ]; then
     SUCCESS=true
     BUILT_WGT="$(find "$PACKAGE_OUTPUT_PATH" -maxdepth 1 -name '*.wgt' | head -1)"
-    if [ -n "$PACKAGE_NAME" ]; then
+    if [ -z "$BUILT_WGT" ]; then
+        echo "::error::No .wgt file found in $PACKAGE_OUTPUT_PATH"
+        SUCCESS=false
+    elif [ -n "$PACKAGE_NAME" ]; then
         PACKAGE_OUTPUT_PATH="$(dirname "$BUILT_WGT")/${PACKAGE_NAME}.wgt"
         mv "$BUILT_WGT" "$PACKAGE_OUTPUT_PATH"
+        echo "package-artifact=$PACKAGE_OUTPUT_PATH" >> "$GITHUB_OUTPUT"
     else
         PACKAGE_OUTPUT_PATH="$BUILT_WGT"
+        echo "package-artifact=$PACKAGE_OUTPUT_PATH" >> "$GITHUB_OUTPUT"
     fi
-    echo "package-artifact=$PACKAGE_OUTPUT_PATH" >> "$GITHUB_OUTPUT"
 else
     SUCCESS=false
     cat "$ERROR_LOG"
