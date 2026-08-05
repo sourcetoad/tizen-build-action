@@ -83,16 +83,16 @@ PACKAGE_NAME="$9"
 #
 # Build and sign
 #
-PACKAGE_OUTPUT_DIR="$PROJECT_DIR/output.wgt"
+PACKAGE_OUTPUT_PATH="$PROJECT_DIR/output.wgt"
 ERROR_LOG="$GITHUB_WORKSPACE/tizen-studio-data/cli/logs/cli.log"
 
 tizen build-web -- "$PROJECT_DIR" \
-    && tizen package -t wgt -s sourcetoad-tizen-public -o "$PACKAGE_OUTPUT_DIR" -- "$PROJECT_DIR/.buildResult"
+    && tizen package -t wgt -s sourcetoad-tizen-public -o "$PACKAGE_OUTPUT_PATH" -- "$PROJECT_DIR/.buildResult"
 
 # shellcheck disable=SC2181
 if [ $? -eq 0 ]; then
     SUCCESS=true
-    BUILT_WGT="$(find "$PACKAGE_OUTPUT_DIR" -maxdepth 1 -name '*.wgt' | head -1)"
+    BUILT_WGT="$(find "$PACKAGE_OUTPUT_PATH" -maxdepth 1 -name '*.wgt' | head -1)"
     if [ -n "$PACKAGE_NAME" ]; then
         PACKAGE_OUTPUT_PATH="$(dirname "$BUILT_WGT")/${PACKAGE_NAME}.wgt"
         mv "$BUILT_WGT" "$PACKAGE_OUTPUT_PATH"
