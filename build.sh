@@ -92,7 +92,7 @@ tizen build-web -- "$PROJECT_DIR" \
 # shellcheck disable=SC2181
 if [ $? -eq 0 ]; then
     SUCCESS=true
-    BUILT_WGT="$(find "$PACKAGE_OUTPUT_PATH" -maxdepth 1 -name '*.wgt' | head -1)"
+    BUILT_WGT="$(find "$PACKAGE_OUTPUT_PATH" -mindepth 1 -maxdepth 1 -type f -name '*.wgt' -print -quit)"
     if [ -z "$BUILT_WGT" ]; then
         echo "::error::No .wgt file found in $PACKAGE_OUTPUT_PATH"
         SUCCESS=false
