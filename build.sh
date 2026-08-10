@@ -98,8 +98,12 @@ if [ $? -eq 0 ]; then
         SUCCESS=false
     elif [ -n "$PACKAGE_NAME" ]; then
         PACKAGE_OUTPUT_PATH="$(dirname "$BUILT_WGT")/${PACKAGE_NAME}.wgt"
-        mv "$BUILT_WGT" "$PACKAGE_OUTPUT_PATH"
-        echo "package-artifact=$PACKAGE_OUTPUT_PATH" >> "$GITHUB_OUTPUT"
+        if [ "$BUILT_WGT" = "$PACKAGE_OUTPUT_PATH" ] || mv "$BUILT_WGT" "$PACKAGE_OUTPUT_PATH"; then
+            echo "package-artifact=$PACKAGE_OUTPUT_PATH" >> "$GITHUB_OUTPUT"
+        else
+            echo "::error::Failed to rename package to $PACKAGE_OUTPUT_PATH"
+            SUCCESS=false
+        fi
     else
         PACKAGE_OUTPUT_PATH="$BUILT_WGT"
         echo "package-artifact=$PACKAGE_OUTPUT_PATH" >> "$GITHUB_OUTPUT"
