@@ -97,7 +97,7 @@ if [ $? -eq 0 ]; then
         echo "::error::No .wgt file found in $PACKAGE_OUTPUT_PATH"
         SUCCESS=false
     elif [ -n "$PACKAGE_NAME" ]; then
-        PACKAGE_OUTPUT_PATH="$(dirname "$BUILT_WGT")/${PACKAGE_NAME}.wgt"
+        PACKAGE_OUTPUT_PATH="$(dirname "$BUILT_WGT")/${PACKAGE_NAME##*/}.wgt"
         if [ "$BUILT_WGT" = "$PACKAGE_OUTPUT_PATH" ] || mv "$BUILT_WGT" "$PACKAGE_OUTPUT_PATH"; then
             echo "package-artifact=$PACKAGE_OUTPUT_PATH" >> "$GITHUB_OUTPUT"
         else
