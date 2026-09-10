@@ -90,6 +90,7 @@ tizen build-web -- "$PROJECT_DIR" \
     && tizen package -t wgt -s sourcetoad-tizen-public -o "$PACKAGE_OUTPUT_PATH" -- "$PROJECT_DIR/.buildResult"
 
 # shellcheck disable=SC2181
+# Tizen writes the file name into that directory and we don't know from the script point of view what it will be named.
 if [ $? -eq 0 ]; then
     SUCCESS=true
     BUILT_WGT="$(find "$PACKAGE_OUTPUT_PATH" -mindepth 1 -maxdepth 1 -type f -name '*.wgt' -print -quit)"
