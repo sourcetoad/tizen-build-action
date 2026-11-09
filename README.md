@@ -19,6 +19,7 @@ Following inputs can be used as `step.with` keys
 | `distributor-key`      | No       | Tizen distributor key       | String | Distributor key used for signing. Base64-encoded.                               |
 | `distributor-password` | No       | Default for distributor key | String | Password for `distributor-key`                                                  |
 | `privilege`            | No       | `public`                    | String | `public` or `partner`&mdash;Which distributor cert/key is used if not provided. |
+| `package-name`         | No       |                             | String | Optional custom filename (without extension) for the output `.wgt` package.     |
 
 You can encode your certificates and keys in base64 via:
 

@@ -78,6 +78,8 @@ cat <<EOF >"$GLOBAL_PROFILES_PATH"
 EOF
 chmod a-w "$GLOBAL_PROFILES_PATH"
 
+PACKAGE_NAME="$9"
+
 #
 # Build and sign
 #
@@ -88,9 +90,25 @@ tizen build-web -- "$PROJECT_DIR" \
     && tizen package -t wgt -s sourcetoad-tizen-public -o "$PACKAGE_OUTPUT_PATH" -- "$PROJECT_DIR/.buildResult"
 
 # shellcheck disable=SC2181
+# Tizen writes the file name into that directory and we don't know from the script point of view what it will be named.
 if [ $? -eq 0 ]; then
     SUCCESS=true
-    echo "package-artifact=$PACKAGE_OUTPUT_PATH" >> "$GITHUB_OUTPUT"
+    BUILT_WGT="$(find "$PACKAGE_OUTPUT_PATH" -mindepth 1 -maxdepth 1 -type f -name '*.wgt' -print -quit)"
+    if [ -z "$BUILT_WGT" ]; then
+        echo "::error::No .wgt file found in $PACKAGE_OUTPUT_PATH"
+        SUCCESS=false
+    elif [ -n "$PACKAGE_NAME" ]; then
+        PACKAGE_OUTPUT_PATH="$(dirname "$BUILT_WGT")/${PACKAGE_NAME##*/}.wgt"
+        if [ "$BUILT_WGT" = "$PACKAGE_OUTPUT_PATH" ] || mv "$BUILT_WGT" "$PACKAGE_OUTPUT_PATH"; then
+            echo "package-artifact=$PACKAGE_OUTPUT_PATH" >> "$GITHUB_OUTPUT"
+        else
+            echo "::error::Failed to rename package to $PACKAGE_OUTPUT_PATH"
+            SUCCESS=false
+        fi
+    else
+        PACKAGE_OUTPUT_PATH="$BUILT_WGT"
+        echo "package-artifact=$PACKAGE_OUTPUT_PATH" >> "$GITHUB_OUTPUT"
+    fi
 else
     SUCCESS=false
     cat "$ERROR_LOG"
