@@ -1,3 +1,7 @@
+# v1.2.0 (November 9, 2026)
+ * Add optional `package-name` input for a custom `.wgt` filename. ([#31](https://github.com/sourcetoad/tizen-build-action/pull/31))
+ * Bump `actions/checkout` in linting workflow to v7. ([#24](https://github.com/sourcetoad/tizen-build-action/pull/24), [#26](https://github.com/sourcetoad/tizen-build-action/pull/26), [#27](https://github.com/sourcetoad/tizen-build-action/pull/27))
+
 # v1.1.2 (May 9, 2025)
  * Add linter for bash files. ([#20](https://github.com/sourcetoad/tizen-build-action/pull/20)
  * Adjust readme for `cache/v4` ([#21](https://github.com/sourcetoad/tizen-build-action/pull/21)
